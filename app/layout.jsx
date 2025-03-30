@@ -4,8 +4,8 @@ import 'nes.css/css/nes.css';
 import Navbar from '@/components/Navbar';
 
 export const metadata = {
-  title: 'GADJA 2025',
-  description: 'GADJA 2025 is a celebration of Carolinian talent and culture.',
+  title: 'Virtual Fun Run & Treasure Hunt | USC SSC',
+  description: 'Lets go!',
 };
 
 const jersey10 = Jersey_10({
