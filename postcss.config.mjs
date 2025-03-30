@@ -1,5 +1,12 @@
 const config = {
-  plugins: ["@tailwindcss/postcss"],
+  theme: {
+    extend: {
+      fontFamily: {
+        custom: ['Monsterrat', 'sans-serif'],
+      },
+    },
+  },
+  plugins: ['@tailwindcss/postcss'],
 };
 
 export default config;
