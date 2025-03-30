@@ -1,6 +1,5 @@
 import Headline from '@/components/Headline';
-import Sponsors from '@/components/Sponsors';
-import Image from 'next/image';
+import Mechanics from '@/components/Mechanics';
 import { Fragment } from 'react';
 
 export default function Home() {
@@ -8,7 +7,7 @@ export default function Home() {
     <Fragment>
       <div>
         <Headline />
-        <Sponsors />
+        <Mechanics />
       </div>
     </Fragment>
   );

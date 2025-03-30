@@ -26,6 +26,7 @@ export default function Headline() {
         width={1920}
         height={1080}
         className=" absolute top-0 left-0 object-cover h-full w-full z-0"
+        unoptimized
       />
       <div className="absolute top-[-20%] z-20 w-full justify-center h-full text-white">
         <div className="flex flex-col items-center justify-center h-full">
