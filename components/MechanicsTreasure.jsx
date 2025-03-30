@@ -14,7 +14,7 @@ export default function MechanicsTreasure() {
     "
       className="p-12 !w-full flex flex-col items-center justify-center bg-[#f0efa7] text-black text-2xl font-bold"
     >
-      <div className="nes-container with-title is-centered flex flex-col items-center justify-center !p-8">
+      <div className=" nes-container with-title is-centered flex flex-col items-center justify-center !p-8">
         <p className="text-5xl text-center !mb-8">Treasure Hunt Mechanics</p>
         {mechanics.map((item, index) => (
           <TextContainer
