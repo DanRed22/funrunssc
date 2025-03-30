@@ -5,9 +5,9 @@ export default function Mechanics() {
     <div
       id="mechanics
     "
-      className="h-[30rem]"
+      className="h-[30rem] flex flex-col items-center justify-center bg-[#f0efa7] text-black text-2xl font-bold w-full"
     >
-      Mechanics
+      This site is a work in progress... Please check back later for updates!
     </div>
   );
 }

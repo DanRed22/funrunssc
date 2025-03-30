@@ -46,7 +46,7 @@ export default function Navbar() {
         <Button
           className="w-18"
           onClick={() => {
-            handleScroll('sponsors');
+            handleScroll('mechanics');
           }}
         >
           Mechanics
