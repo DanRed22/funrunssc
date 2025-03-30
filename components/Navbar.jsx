@@ -24,7 +24,7 @@ export default function Navbar() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   return (
-    <div className="bg-[#f0efa7] px-4 py-2 h-fit flex flex-col items-center justify-between sticky top-0 z-50">
+    <div className="bg-[#f0efa7] px-4 py-2 h-fit flex flex-col items-center sticky justify-between !top-0 !z-30">
       <div className="flex flex-col items-center space-x-2">
         <Image
           src="logo.png"
