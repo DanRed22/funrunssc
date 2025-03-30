@@ -38,6 +38,7 @@ export default function Clouds({ isMobile }) {
             animation: `moveCloud ${duration}s linear infinite`,
             animationDelay: `${delay}s`,
           }}
+          unoptimized
         />
       ))}
     </div>

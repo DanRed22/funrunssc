@@ -35,9 +35,9 @@ export default function Navbar() {
           priority
           unoptimized
         />
-        <p className="text-3xl text-black font-bold">
+        {/* <p className="text-3xl text-black font-bold">
           Virtual Fun Run & Treasure Hunt
-        </p>
+        </p> */}
       </div>
       <div className="flex flex-row !justify-center !items-center !space-x-4 w-full !text-md">
         <Button className="w-18" onClick={() => scrollToTop()}>
@@ -49,7 +49,7 @@ export default function Navbar() {
             handleScroll('sponsors');
           }}
         >
-          Mehanics
+          Mechanics
         </Button>
         <Button
           className="w-18"
