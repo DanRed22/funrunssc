@@ -1,12 +1,13 @@
 import React from 'react';
 import TextContainer from './TextContainer';
+import Image from 'next/image';
 
 export default function Mechanics() {
   const mechanics = [
-    '1. Participants  must track their progress via the Strava application to track their distance traveled and accumulate their total from March 31 to April 24. ',
-    '2. Participants may complete their kilometer bracket at their own pace, location, and preferred time. Once completed, you may submit your final distance through the official submission form.',
-    '3. The Treasure Hunt is a fun way to progress towards their running goal while searching for prizes. ',
-    '4. Top 3 finishers will win cash prizes. All participants shall receive an e-certificate for participating on the event. This will be sent via the email provided during registration',
+    'Participants must track their progress via the Strava application to track their distance traveled and accumulate their total from April 02 to April 26. ',
+    'Participants may complete their kilometer bracket at their own pace, location, and preferred time. Once completed, you may submit your final distance through the official submission form.',
+    'Join the fun and unlock rewards by participating in weekly running quests. At the same time, there will be a Treasure Hunt which is a fun way to progress towards your running goal while searching for prizes. ',
+    'Top 3 finishers per kilometer tier WILL WIN CASH PRIZES. All participants shall receive an e-certificate for participating in the event. This will be sent through the email address provided during the registration.',
   ];
   return (
     <div

@@ -77,6 +77,15 @@ export default function Headline() {
           unoptimized
         />
       </div>
+      <p className="text-5xl text-center !my-4">General Mechanics</p>
+      <Image
+        src={'/general-mechanics.png'}
+        alt={'General Mechanics'}
+        width={1080}
+        height={1920}
+        className="rounded-lg object-contain w-full md:w-[50%] mb-4"
+        unoptimized
+      />
     </GoogleReCaptchaProvider>
   );
 }
