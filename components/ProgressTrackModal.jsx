@@ -74,7 +74,7 @@ function ProgressTrackModal() {
       />
 
       <Dialog>
-        <DialogTrigger className="nes-btn is-success !w-[16rem] h-[4rem] !text-3xl">
+        <DialogTrigger className="nes-btn is-warning !w-[16rem] h-[4rem] !text-3xl">
           Track Progress
         </DialogTrigger>
 
