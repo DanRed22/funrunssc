@@ -19,20 +19,18 @@ model User {
 
 model Participant {
   id        Int    @id @default(autoincrement())
-  unique_id String @unique
   name      String
   email     String? 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   deletedAt DateTime?
 
-  entries   Entry[]
 }
 
 model Entry {
   id        Int    @id @default(autoincrement())
   name     String
-  userId    String    
+  email    String    
   distance  Float  @default(0)
   link      String
   status    String @default("PENDING")
@@ -40,5 +38,4 @@ model Entry {
   updatedAt DateTime @updatedAt
   deletedAt DateTime?
 
-  participant      Participant   @relation(fields: [userId], references: [unique_id])
 }

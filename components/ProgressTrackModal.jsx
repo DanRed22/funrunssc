@@ -8,14 +8,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import TutorialStravaLink from './TutorialStravaLink';
 import useRecaptcha from '@/hooks/useCaptcha';
 import axios from 'axios';
 import { ImSpinner } from 'react-icons/im';
+import ParticipantProgressModal from './ParticipantProgressModal';
 
-function FormModal({ className = '' }) {
-  const [captchaToken, setCaptchaToken] = useState('');
+function ProgressTrackModal() {
   const [loading, setLoading] = useState(false);
+  const [data, setData] = useState(null);
+  const [showData, setShowData] = useState(false);
 
   const executeRecaptcha = useRecaptcha(); // Get recaptcha function without auto-executing
 
@@ -28,39 +29,32 @@ function FormModal({ className = '' }) {
     const token = await executeRecaptcha('submit_form'); // Execute when needed
     // setCaptchaToken(token);
 
-    const name = event.target.name.value;
-    const email = event.target.email.value;
-    const distance = event.target.distance.value;
-    const stravaLink = event.target.strava_link.value;
-
+    const searchField = event.target.searchField.value;
     const response = await axios.post('/api/verify-recaptcha', {
       token,
     });
 
     if (response.data.success) {
       try {
-        const res = await axios.post('/api/entry', {
-          name,
-          email: email,
-          distance,
-          link: stravaLink,
+        const res = await axios.get('/api/entry/search', {
+          params: {
+            searchField,
+          },
         });
-        console.log('RESPONSE', res);
-        if (res.status === 201) {
-          alert('✅ Submission successful! Thank you for your participation.');
-          window.location.reload();
+        if (res.status === 200 && res.data && res.data.participant) {
+          setData(res.data);
+          setShowData(true);
         } else {
-          alert(`❌ Submission failed! ${res.data}`);
+          alert('❌ No data found for the provided search field.');
         }
       } catch (error) {
         alert(
-          `❌ Submission failed! ${
+          `❌ Search failed! ${
             error.response?.data?.error
               ? error.response.data.error
               : error.message
           }`
         );
-        console.error('Error submitting form:', error.error);
       } finally {
         setLoading(false);
       }
@@ -73,19 +67,23 @@ function FormModal({ className = '' }) {
   };
   return (
     <Fragment>
+      <ParticipantProgressModal
+        data={data}
+        open={showData}
+        setOpen={setShowData}
+      />
+
       <Dialog>
-        <DialogTrigger
-          className={`nes-btn is-success !w-[16rem] h-[4rem] !text-3xl ${className}`}
-        >
-          Submit Progress
+        <DialogTrigger className="nes-btn is-success !w-[16rem] h-[4rem] !text-3xl">
+          Track Progress
         </DialogTrigger>
 
         <DialogContent>
           <DialogHeader>
-            <DialogTitle className="text-3xl">Submit Your Progress</DialogTitle>
+            <DialogTitle className="text-3xl">Track Your Progress</DialogTitle>
             <DialogDescription className="text-sm">
               {' '}
-              Please submit your progress for the Virtual Fun Run.
+              Please provide your registered email address.
             </DialogDescription>
 
             <form onSubmit={handleSubmit}>
@@ -93,48 +91,11 @@ function FormModal({ className = '' }) {
                 <div className="nes-field w-full">
                   <input
                     type="text"
-                    id="name"
+                    id="searchField"
                     className="nes-input"
                     placeholder="Your name"
                     required
                   />
-                </div>
-
-                <div className="nes-field w-full">
-                  <input
-                    type="text"
-                    id="email"
-                    className="nes-input"
-                    placeholder="Registered Email"
-                    required
-                  />
-                </div>
-
-                <div className="nes-field w-full">
-                  <input
-                    type="number"
-                    id="distance"
-                    className="nes-input"
-                    placeholder="Distance Travelled (KM)"
-                    step="any"
-                    min="0"
-                    inputMode="decimal"
-                    pattern="\\d*(\\.\\d+)?"
-                    required
-                  />
-                </div>
-
-                <div className="nes-field w-full flex flex-row">
-                  <input
-                    type="text"
-                    id="strava_link"
-                    className="nes-input"
-                    placeholder="Strava Activity Link"
-                    required
-                  />
-                  <div className="flex items-center justify-center ml-2">
-                    <TutorialStravaLink />
-                  </div>
                 </div>
 
                 <div className="space-x-0 space-y-0 flex flex-col justify-center items-center w-full">
@@ -150,11 +111,6 @@ function FormModal({ className = '' }) {
                       />
                     )}
                   </button>
-
-                  <p className="text-xs text-center text-orange-500">
-                    Please make sure the information is correct before
-                    submitting, else your progress will be invalidated.
-                  </p>
                 </div>
               </div>
             </form>
@@ -165,4 +121,4 @@ function FormModal({ className = '' }) {
   );
 }
 
-export default FormModal;
+export default ProgressTrackModal;

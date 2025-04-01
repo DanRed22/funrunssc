@@ -5,23 +5,22 @@ const prisma = new PrismaClient();
 
 export async function POST(req) {
   try {
-    const { name, userId, distance, link } = await req.json();
+    const { name, email, distance, link } = await req.json();
 
-    if (!name || !userId || !distance || !link) {
+    if (!name || !email || !distance || !link) {
       return NextResponse.json(
-        { error: 'Missing required fields' },
+        {
+          error: 'Missing required fields',
+        },
         { status: 400 }
       );
     }
 
-    // Check if user exists
-    const user = await prisma.participant.findUnique({
-      where: { unique_id: userId },
-    });
-
-    if (!user) {
+    if (distance <= 0) {
       return NextResponse.json(
-        { error: 'User not in database yet!' },
+        {
+          error: 'Distance must be greater than 0',
+        },
         { status: 400 }
       );
     }
@@ -30,7 +29,7 @@ export async function POST(req) {
     const entry = await prisma.entry.create({
       data: {
         name,
-        userId,
+        email: email.trim(),
         distance: parseFloat(distance),
         link,
       },
