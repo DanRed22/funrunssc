@@ -10,12 +10,12 @@ export default function TreasureChest() {
   // Function to trigger the shake effect
   const triggerShake = () => {
     setIsShaking(true);
-    setTimeout(() => setIsShaking(false), 500); // Shake duration
+    setTimeout(() => setIsShaking(false), 1000); // Shake duration
   };
 
   // Random shake effect every 5-10 seconds
   useEffect(() => {
-    const interval = setInterval(triggerShake, Math.random() * 5000 + 5000);
+    const interval = setInterval(triggerShake, Math.random() * 3000 + 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -23,12 +23,13 @@ export default function TreasureChest() {
     <div className="flex flex-col items-center justify-center p-4 my-4">
       <div
         className={clsx(
-          'cursor-pointer transition-all duration-200',
+          ' transition-all duration-200',
           isShaking && 'animate-shake'
         )}
         onClick={() => {
           setIsOpen(!isOpen);
           triggerShake(); // Shake on click
+          alert('Treasures will be available soon! 🎉'); // Alert for treasure found
         }}
       >
         <Image
