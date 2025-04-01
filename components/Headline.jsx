@@ -6,12 +6,13 @@ import Image from 'next/image';
 import TreasureChest from './TreasureChest';
 import FormModal from './FormModal';
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3';
+import ProgressTrackModal from './ProgressTrackModal';
 
 export default function Headline() {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth < 1222);
     };
 
     if (typeof window !== 'undefined') {
@@ -33,7 +34,7 @@ export default function Headline() {
           isMobile={isMobile}
         />
       )} */}
-        <div className="absolute z-20 mt-[-5rem] w-full justify-center h-full text-white">
+        <div className="absolute z-20 mt-[-5rem] portrait:mt-0 sm:mt-0  w-full justify-center h-full text-white">
           <div className="flex flex-col items-center justify-center h-full">
             <h1 className="text-5xl font-bold text-[#1E3A8A] ">
               Virtual Fun Run & Treasure Hunt
@@ -41,10 +42,22 @@ export default function Headline() {
             <p className="animate-pulse duration-[1] mt-4 text-2xl text-[#92cc42] drop-shadow-[0_2px_2px_rgba(0,0,0,1)]">
               Join the adventure today!
             </p>
-            <button className="nes-btn is-primary mt-4 !w-[16rem] h-[4rem] !text-3xl !my-4">
-              Register Here
-            </button>
-            <FormModal />
+            <div className="flex flex-col items-center justify-center !space-y-4">
+              <button
+                className="nes-btn is-primary !w-[16rem] h-[4rem] !text-3xl !my-4"
+                onClick={() => {
+                  //new tab
+                  window.open(
+                    'https://docs.google.com/forms/d/e/1FAIpQLScaoB7TY812u4V3UlnVzUOlUj4no81InFYj__bpm53ZUwMOyw/viewform?usp=sharing',
+                    '_blank'
+                  );
+                }}
+              >
+                Register Here
+              </button>
+              <FormModal />
+              <ProgressTrackModal />
+            </div>
             {/* <button
             className="nes-btn is-success  mt-4 !w-[16rem] h-[4rem] !text-3xl"
             onClick={() => setShowDialog(!showDialog)}

@@ -11,22 +11,25 @@ import {
 import TutorialStravaLink from './TutorialStravaLink';
 import useRecaptcha from '@/hooks/useCaptcha';
 import axios from 'axios';
+import { ImSpinner } from 'react-icons/im';
 
-function FormModal() {
+function FormModal({ className = '' }) {
   const [captchaToken, setCaptchaToken] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const executeRecaptcha = useRecaptcha(); // Get recaptcha function without auto-executing
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
 
     if (!executeRecaptcha) return alert('Recaptcha not ready');
 
     const token = await executeRecaptcha('submit_form'); // Execute when needed
-    setCaptchaToken(token);
+    // setCaptchaToken(token);
 
     const name = event.target.name.value;
-    const playerId = event.target.player_id.value;
+    const email = event.target.email.value;
     const distance = event.target.distance.value;
     const stravaLink = event.target.strava_link.value;
 
@@ -38,27 +41,32 @@ function FormModal() {
       try {
         const res = await axios.post('/api/entry', {
           name,
-          userId: playerId,
+          email: email,
           distance,
           link: stravaLink,
         });
+        console.log('RESPONSE', res);
         if (res.status === 201) {
           alert('✅ Submission successful! Thank you for your participation.');
           window.location.reload();
-        } else if (status === 404) {
-          alert('❌ User not in database yet! Please contact administrator.');
-        } else if (res.status === 400) {
-          alert('❌ Missing required fields! Please fill in all fields.');
-        } else if (res.status === 500) {
-          alert('❌ Internal Server Error! Please try again later.');
         } else {
-          alert(`❌ Submission failed! ${res.error}`);
+          alert(`❌ Submission failed! ${res.data}`);
         }
       } catch (error) {
-        console.error('Error submitting form:', error);
+        alert(
+          `❌ Submission failed! ${
+            error.response?.data?.error
+              ? error.response.data.error
+              : error.message
+          }`
+        );
+        console.error('Error submitting form:', error.error);
+      } finally {
+        setLoading(false);
       }
     } else {
       alert('❌ ReCaptcha Verification Error! Please contact administrator.');
+      setLoading(false);
 
       return;
     }
@@ -66,7 +74,9 @@ function FormModal() {
   return (
     <Fragment>
       <Dialog>
-        <DialogTrigger className="nes-btn is-success mt-4 !w-[16rem] h-[4rem] !text-3xl">
+        <DialogTrigger
+          className={`nes-btn is-success !w-[16rem] h-[4rem] !text-3xl ${className}`}
+        >
           Submit Progress
         </DialogTrigger>
 
@@ -75,7 +85,8 @@ function FormModal() {
             <DialogTitle className="text-3xl">Submit Your Progress</DialogTitle>
             <DialogDescription className="text-sm">
               {' '}
-              Please submit your progress for the Virtual Fun Run.
+              Please submit your progress for the Virtual Fun Run. Be sure it is
+              within April 2, 2025 to April 26, 2025.
             </DialogDescription>
 
             <form onSubmit={handleSubmit}>
@@ -93,9 +104,9 @@ function FormModal() {
                 <div className="nes-field w-full">
                   <input
                     type="text"
-                    id="player_id"
+                    id="email"
                     className="nes-input"
-                    placeholder="Player ID"
+                    placeholder="Registered Email"
                     required
                   />
                 </div>
@@ -106,6 +117,10 @@ function FormModal() {
                     id="distance"
                     className="nes-input"
                     placeholder="Distance Travelled (KM)"
+                    step="any"
+                    min="0"
+                    inputMode="decimal"
+                    pattern="\\d*(\\.\\d+)?"
                     required
                   />
                 </div>
@@ -126,10 +141,17 @@ function FormModal() {
                 <div className="space-x-0 space-y-0 flex flex-col justify-center items-center w-full">
                   <button
                     type="submit"
-                    className="nes-btn is-success mt-4 !w-[16rem] h-[4rem] !text-3xl !my-4"
+                    className=" !flex !flex-row !items-center !justify-center nes-btn is-success mt-4 !w-[16rem] h-[4rem] !text-3xl !my-4"
                   >
                     Submit
+                    {loading && (
+                      <ImSpinner
+                        size={20}
+                        className={'animate-spin ease-linear !bg-none ml-2'}
+                      />
+                    )}
                   </button>
+
                   <p className="text-xs text-center text-orange-500">
                     Please make sure the information is correct before
                     submitting, else your progress will be invalidated.

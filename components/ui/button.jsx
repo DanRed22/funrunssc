@@ -5,7 +5,7 @@ import { cva } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  '!p-4 hover:cursor-pointer !flex !flex-col !items-center !justify-center',
+  '!p-4 hover:cursor-pointer !flex !flex-col !items-center !justify-center disabled:opacity-50 disabled:pointer-events-none',
   {
     variants: {
       variant: {
