@@ -18,7 +18,7 @@ export default function Footer() {
       </div>
       <p>
         Problems with the site? Send bugs, reports, or suggestions to:{' '}
-        <a href="mailto:support@example.com">21103909@usc.edu.ph</a>
+        <a href="mailto:21103909@usc.edu.ph">21103909@usc.edu.ph</a>
       </p>
       <p>©USC SSC A.Y. 2024 - 2025</p>
     </div>
