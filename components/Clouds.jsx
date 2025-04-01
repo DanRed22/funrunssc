@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
-export default function Clouds({ isMobile }) {
+export default function Clouds({ isMobile, className }) {
   const [clouds, setClouds] = useState([]);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function Clouds({ isMobile }) {
   }, [isMobile]);
 
   return (
-    <div className="relative top-0 left-0 w-full h-full overflow-hidden z-10">
+    <div className={` w-full h-full overflow-hidden z-10 ${className}`}>
       {clouds.map(({ id, size, duration, top, delay }) => (
         <Image
           key={id}

@@ -24,8 +24,8 @@ export default function Navbar() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   return (
-    <div className="bg-[#f0efa7] px-4 py-2 h-fit flex flex-col items-center sticky justify-between !top-0 !z-30">
-      <div className="flex flex-col items-center space-x-2">
+    <div className="bg-[#f0efa7] px-4 py-2 h-fit flex flex-col items-center w-full justify-between !top-0 !z-30">
+      <div className="flex flex-row items-center justify-center space-x-2">
         <Image
           src="logo.png"
           alt="Logo"
@@ -35,9 +35,15 @@ export default function Navbar() {
           priority
           unoptimized
         />
-        {/* <p className="text-3xl text-black font-bold">
-          Virtual Fun Run & Treasure Hunt
-        </p> */}
+        <Image
+          src="ssc-logo.png"
+          alt="Logo"
+          width={40}
+          height={40}
+          className="!rounded-full !object-cover mt-[-0.3rem]"
+          priority
+          unoptimized
+        />
       </div>
       <div className="flex flex-row !justify-center !items-center !space-x-4 w-full !text-md">
         <Button className="w-18" onClick={() => scrollToTop()}>
