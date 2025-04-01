@@ -43,7 +43,16 @@ export default function Headline() {
               Join the adventure today!
             </p>
             <div className="flex flex-col items-center justify-center !space-y-4">
-              <button className="nes-btn is-primary !w-[16rem] h-[4rem] !text-3xl !my-4">
+              <button
+                className="nes-btn is-primary !w-[16rem] h-[4rem] !text-3xl !my-4"
+                onClick={() => {
+                  //new tab
+                  window.open(
+                    'https://docs.google.com/forms/d/e/1FAIpQLScaoB7TY812u4V3UlnVzUOlUj4no81InFYj__bpm53ZUwMOyw/viewform?usp=sharing',
+                    '_blank'
+                  );
+                }}
+              >
                 Register Here
               </button>
               <FormModal />

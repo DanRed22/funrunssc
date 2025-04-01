@@ -85,7 +85,8 @@ function FormModal({ className = '' }) {
             <DialogTitle className="text-3xl">Submit Your Progress</DialogTitle>
             <DialogDescription className="text-sm">
               {' '}
-              Please submit your progress for the Virtual Fun Run.
+              Please submit your progress for the Virtual Fun Run. Be sure it is
+              within April 2, 2025 to April 26, 2025.
             </DialogDescription>
 
             <form onSubmit={handleSubmit}>
