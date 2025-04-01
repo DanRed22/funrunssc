@@ -18,10 +18,7 @@ const jersey10 = Jersey_10({
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={` ${jersey10.className} font-sans`}>
-      <body className="antialiased">
-        <Navbar />
-        {children}
-      </body>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

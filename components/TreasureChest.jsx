@@ -37,6 +37,7 @@ export default function TreasureChest() {
           width={100}
           height={100}
           className="hover:drop-shadow-[0_0_10px_rgb(255,215,0)] bg-transparent"
+          unoptimized
         />
       </div>
     </div>

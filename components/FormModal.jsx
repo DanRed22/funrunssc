@@ -8,7 +8,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import Image from 'next/image';
 import TutorialStravaLink from './TutorialStravaLink';
 import useRecaptcha from '@/hooks/useCaptcha';
 import axios from 'axios';

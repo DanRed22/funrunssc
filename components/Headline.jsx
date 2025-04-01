@@ -25,7 +25,7 @@ export default function Headline() {
     <GoogleReCaptchaProvider
       reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
     >
-      <div id="headline" className="relative h-screen text-center">
+      <div id="headline" className="flex w-full h-fit text-center">
         {/* {showDialog && (
         <FormModal
           setShowDialog={setShowDialog}
@@ -33,16 +33,7 @@ export default function Headline() {
           isMobile={isMobile}
         />
       )} */}
-        <Clouds isMobile={isMobile} />
-        <Image
-          src={isMobile ? '/background-mobile.png' : '/background.png'}
-          alt="Background"
-          width={1920}
-          height={1080}
-          className=" absolute top-0 left-0 object-cover h-full w-full z-0"
-          unoptimized
-        />
-        <div className="absolute top-[-20%] z-20 w-full justify-center h-full text-white">
+        <div className="absolute z-20 mt-[-5rem] w-full justify-center h-full text-white">
           <div className="flex flex-col items-center justify-center h-full">
             <h1 className="text-5xl font-bold text-[#1E3A8A] ">
               Virtual Fun Run & Treasure Hunt
@@ -51,7 +42,7 @@ export default function Headline() {
               Join the adventure today!
             </p>
             <button className="nes-btn is-primary mt-4 !w-[16rem] h-[4rem] !text-3xl !my-4">
-              Get Started
+              Register Here
             </button>
             <FormModal />
             {/* <button
@@ -63,6 +54,15 @@ export default function Headline() {
             <TreasureChest />
           </div>
         </div>
+        <Clouds className="absolute" isMobile={isMobile} />
+        <Image
+          src={isMobile ? '/background-mobile.png' : '/background.png'}
+          alt="Background"
+          width={1920}
+          height={1080}
+          className=" object-cover h-full w-full z-0"
+          unoptimized
+        />
       </div>
     </GoogleReCaptchaProvider>
   );
