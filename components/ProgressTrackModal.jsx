@@ -112,6 +112,11 @@ function ProgressTrackModal() {
                     )}
                   </button>
                 </div>
+
+                <p className="text-sm text-center">
+                  Verification of your progress may take some time, but please
+                  be patient—our team is working hard behind the scenes.
+                </p>
               </div>
             </form>
           </DialogHeader>
