@@ -1,9 +1,9 @@
 import Headline from '@/components/Headline';
 import Mechanics from '@/components/Mechanics';
 import MechanicsTreasure from '@/components/MechanicsTreasure';
-import Navbar from '@/components/Navbar';
+import Navbar from '../components/Navbar';
 import { Fragment } from 'react';
-import Footer from '@/components/Footer';
+import Footer from '../components/Footer';
 
 export default function Home() {
   return (
