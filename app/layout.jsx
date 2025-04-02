@@ -1,7 +1,6 @@
 import { Jersey_10 } from 'next/font/google';
 import './globals.css';
 import 'nes.css/css/nes.css';
-import Navbar from '@/components/Navbar';
 
 export const metadata = {
   title: 'Virtual Fun Run & Treasure Hunt | USC SSC',
